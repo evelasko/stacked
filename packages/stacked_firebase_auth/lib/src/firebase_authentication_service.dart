@@ -25,7 +25,7 @@ class FirebaseAuthenticationService {
   /// Usually a reverse domain notation like com.example.app.service
   final String? _appleClientId;
 
-  final firebaseAuth = customInstance ?? FirebaseAuth.instance;
+  final FirebaseAuth firebaseAuth;
   final _googleSignIn = GoogleSignIn();
 
   FirebaseAuthenticationService({
@@ -33,7 +33,8 @@ class FirebaseAuthenticationService {
     @Deprecated('Pass in the appleClientId through the signInWithApple function') String? appleClientId,
     this.log,
     FirebaseAuth? customInstance,
-  })  : _appleRedirectUri = appleRedirectUri,
+  })  : firebaseAuth = customInstance ?? FirebaseAuth.instance,
+        _appleRedirectUri = appleRedirectUri,
         _appleClientId = appleClientId;
 
   String? _pendingEmail;
